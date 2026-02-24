@@ -14,8 +14,8 @@ screen_y = FD.screen_height
 
 center = (screen_x // 2, screen_y // 2)
 
-f = 330		# Distáncia focal
-camera_offset = 300	# Distancia de la cámara
+f = 430		# Distáncia focal
+camera_offset = 350	# Distancia de la cámara
 
 # Colores
 RED = FD.RED
