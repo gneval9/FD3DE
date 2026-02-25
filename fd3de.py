@@ -14,8 +14,8 @@ screen_y = FD.screen_height
 
 center = (screen_x // 2, screen_y // 2)
 
-f = 430		# Distáncia focal
-camera_offset = 350	# Distancia de la cámara
+f = 330		# Distáncia focal
+camera_offset = 300	# Distancia de la cámara
 
 # Colores
 RED = FD.RED
@@ -86,7 +86,7 @@ def rotate_z(angle, obj):
 	obj["rotation"][2] += angle
 
 
-def render(obj, color):
+def render(obj, color, scale=1):
 
 	projected = []
 
@@ -104,7 +104,7 @@ def render(obj, color):
 	# ---- Transformación completa ----
 	for v in obj["original"]:
 
-		x, y, z = v[0], v[1], v[2]
+		x, y, z = v[0] * scale, v[1] * scale, v[2] * scale
 
 		# Rot X
 		y, z = y * cosx - z * sinx, y * sinx + z * cosx
@@ -156,5 +156,5 @@ def render(obj, color):
 				)
 
 
-def clear_object(obj):
-	render(obj, BLACK)
+def clear_object(obj, scale=1):
+	render(obj, BLACK, scale)
