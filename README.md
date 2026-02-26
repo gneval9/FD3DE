@@ -32,10 +32,10 @@ import fd3de
 
 cubo = fd3de.load("Modelos/cubo.fd3de")  # Cargar modelo 3D
 
-fd3de.move_x(-170, cubo)                 # Mover el modelo -170 unidades en el eje X
+fd3de.move("x", -170, cubo)                 # Mover el modelo -170 unidades en el eje X
 
 while True:
-    fd3de.rotate_y(2, cubo)              # Rotar el modelo 2 grados en el eje Y
+    fd3de.rotate("y", 2, cubo)              # Rotar el modelo 2 grados en el eje Y
 
     fd3de.render(cubo, fd3de.YELLOW)     # Renderizar el modelo de color amarillo
     fd3de.update()                       # Actualizar el framebuffer
