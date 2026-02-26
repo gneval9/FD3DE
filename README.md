@@ -1,6 +1,6 @@
 ## FD3DE (FrameDirect 3D Engine)
 
-**FD3DE** es un motor 3D programado en Python 3 que utiliza **FrameDirect** para el renderizado en **framebuffer**.  
+**FD3DE** es un motor 3D programado en Python3 que utiliza **FrameDirect** para el renderizado en **framebuffer**.  
 La librería permite renderizar figuras 3D creadas por el usuario.
 
 Este paquete no incluye modelos 3D predefinidos.  
