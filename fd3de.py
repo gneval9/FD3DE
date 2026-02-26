@@ -62,28 +62,33 @@ def get_center(obj):
 	return (cx, cy, cz)
 
 
-def move_x(dist_x, obj):
-	obj["position"][0] += dist_x
+def move(axis, dist, obj):
+	if axis == "x":
+		obj["position"][0] += dist
 
+	elif axis == "y":
+		obj["position"][1] += dist
+	
+	elif axis == "z":
+		obj["position"][2] += dist
+	
+	else:
+		print(f"Error: '{axis}' no es un argumento válido para la función 'move()'")
+		exit()
 
-def move_y(dist_y, obj):
-	obj["position"][1] += dist_y
+def rotate(axis, angle, obj):
+	if axis == "x":
+		obj["rotation"][0] += angle
 
+	elif axis == "y":
+		obj["rotation"][1] += angle
 
-def move_z(dist_z, obj):
-	obj["position"][2] += dist_z
+	elif axis == "z":
+		obj["rotation"][2] += angle
 
-
-def rotate_x(angle, obj):
-	obj["rotation"][0] += angle
-
-
-def rotate_y(angle, obj):
-	obj["rotation"][1] += angle
-
-
-def rotate_z(angle, obj):
-	obj["rotation"][2] += angle
+	else:
+		print(f"Error: '{axis}' no es un argumento válido para la función 'rotate()'")
+		exit()
 
 
 def render(obj, color, scale=1):
