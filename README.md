@@ -1,4 +1,4 @@
-## FD3DE (FrameDirect 3D Engine)
+## FD3DE (FrameDirect 3D Engine) - V0.1.3
 
 **FD3DE** es un motor 3D programado en Python3 que utiliza **FrameDirect** para el renderizado en **framebuffer**.  
 La librería permite renderizar figuras 3D creadas por el usuario.
@@ -65,10 +65,11 @@ Se encarga de renderizar el objeto guardado en una variable en la pantalla.
 
 `obj (dict)` → Objeto cargado con **load()**.  
 `color (str)` → Color en formato **ARGB** (en hexadecimal).  
-`scale (int)` → Número por el que se multiplicará la escala del objeto (por defecto equivale a 1).
+`scale (float)` → Número por el que se multiplicará la escala del objeto (por defecto equivale a 1).
+`perspective (boolean)` → Indica si se aplicará efecto de perspectiva o no al modelo renderizado.
 
 ```python
-fd3de.render(cubo, fd3de.RED, 2)
+fd3de.render(cubo, fd3de.RED, 2, True)
 ```
 
 ---
@@ -101,14 +102,18 @@ fd3de.rotate("y", 35, cubo)
 
 ---
 
-### clear_object(obj)
+### clear_object(obj,scale=1, perspective=True)
 
 Redibuja el objeto sobre sí mismo en color negro para borrarlo (es más eficiente que pintar toda la pantalla de negro).
+Como utiliza directamente la función `render()` para eso, requiere tener los mismos argumentos que esta para funcionar correctamente.
 
 `obj (dict)` → Objeto a borrar.
+`scale (float)` → Número por el que se multiplicará la escala del objeto (por defecto equivale a 1).
+`perspective (boolean)` → Indica si se aplicará efecto de perspectiva o no al modelo renderizado.
+
 
 ```python
-fd3de.clear_object(cubo)
+fd3de.clear_object(cubo, 0.3, False)
 ```
 
 ---
