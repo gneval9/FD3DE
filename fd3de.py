@@ -165,5 +165,5 @@ def render(obj, color, scale=1, perspective=True):
 				)
 
 
-def clear_object(obj, scale=1):
+def clear_object(obj, scale=1, perspective=True):
 	render(obj, BLACK, scale)
