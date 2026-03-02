@@ -1,6 +1,6 @@
 # Made and developed by gneval9 Software
 # 26-02-2026
-# V0.1.2
+# V0.1.3
 
 import framedirect as FD
 import math as m
@@ -92,7 +92,7 @@ def rotate(axis, angle, obj):
 		exit()
 
 
-def render(obj, color, scale=1):
+def render(obj, color, scale=1, perspective=True):
 
 	projected = []
 
@@ -132,9 +132,12 @@ def render(obj, color, scale=1):
 		if z <= 1:
 			projected.append(None)
 			continue
-
-		Px = (f * x) / z
-		Py = (f * y) / z
+		if perspective == True:
+			Px = (f * x) / z
+			Py = (f * y) / z
+		else:
+			Px = x
+			Py = y
 
 		projected.append([Px, Py])
 
