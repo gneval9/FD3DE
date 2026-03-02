@@ -59,7 +59,7 @@ cubo = fd3de.load("Modelos/cubo.fd3de")
 
 ---
 
-### render(obj, color, scale=1)
+### render(obj, color, scale=1, perspective=True)
 
 Se encarga de renderizar el objeto guardado en una variable en la pantalla.
 
@@ -102,7 +102,7 @@ fd3de.rotate("y", 35, cubo)
 
 ---
 
-### clear_object(obj,scale=1, perspective=True)
+### clear_object(obj, scale=1, perspective=True)
 
 Redibuja el objeto sobre sí mismo en color negro para borrarlo (es más eficiente que pintar toda la pantalla de negro).
 Como utiliza directamente la función `render()` para eso, requiere tener los mismos argumentos que esta para funcionar correctamente.
