@@ -1,0 +1,2 @@
+- Añadir cambio de perspectiva fija
+- Arreglar división por coordenadas (0,0) para PX y PY
