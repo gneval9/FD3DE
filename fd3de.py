@@ -1,5 +1,5 @@
 # Made and developed by gneval9 Software
-# 16-04-2026
+# 20-04-2026
 # V0.1.4
 
 import framedirect as FD
@@ -71,10 +71,10 @@ def move(axis, dist, obj):
 
 	elif axis == "y":
 		obj["position"][1] += dist
-	
+
 	elif axis == "z":
 		obj["position"][2] += dist
-	
+
 	else:
 		print(f"Error: '{axis}' no es un argumento válido para la función 'move()'")
 		exit()
@@ -94,7 +94,7 @@ def rotate(axis, angle, obj):
 		exit()
 
 
-def render(obj, color, scale=1):
+def render(obj, color, scale=1, perspective_3d=True):
 
 	projected = []
 
@@ -137,14 +137,29 @@ def render(obj, color, scale=1):
 
 
 		if perspective == "front":
-			print()		
-	
-			Px = (f * x) / z
-			Py = (f * y) / z
-			
+			print()
+
+			try:
+
+				if perspective_3d == True:
+					Px = (f * x) / z
+					Py = (f * y) / z
+					projected.append([Px, Py])
+
+				else:
+					Px = x
+					Py = y
+					projected.append([Px, Py])
+
+			except ZeroDivisionError:
+				Px = 0
+				Py = 0
+				projected.append([Px, Py])
+
+
 			if Px < -FD.screen_width:
 				Px = -FD.screen_width
-			
+
 			if Py < -FD.screen_height:
 				Py = -FD.screen_height
 
@@ -155,17 +170,23 @@ def render(obj, color, scale=1):
 				Py = FD.screen_height
 
 
-			projected.append([Px, Py])
+
 
 
 
 		elif perspective == "up":
 			print(x,y,z)
 			try:
-				Px = (f * x) / y
-				Py = (f * z) / y
-				projected.append([Px, Py*-1])
-			
+
+				if perspective_3d == True:
+					Px = (f * x) / y
+					Py = (f * z) / y
+					projected.append([Px, Py*-1])
+
+				else:
+					Px = x
+					Py = y
+
 			except ZeroDivisionError:
 				Px = 0
 				Py = 0
@@ -182,7 +203,7 @@ def render(obj, color, scale=1):
 
 
 
-		
+
 	# ---- Dibujar aristas ----
 	for i in range(len(projected)):
 
@@ -207,5 +228,5 @@ def render(obj, color, scale=1):
 				)
 
 
-def clear_object(obj, scale=1):
-	render(obj, BLACK, scale)
+def clear_object(obj, scale=1, perspective_3d=True):
+	render(obj, BLACK, scale, perspective_3d)
