@@ -1,5 +1,5 @@
 # Made and developed by gneval9 Software
-# 20-04-2026
+# 23-04-2026
 # V0.1.4
 
 import framedirect as FD
@@ -144,6 +144,20 @@ def render(obj, color, scale=1, perspective_3d=True):
 				if perspective_3d == True:
 					Px = (f * x) / z
 					Py = (f * y) / z
+
+					if Px < -FD.screen_width:
+						Px = -FD.screen_width
+
+					if Py < -FD.screen_height:
+						Py = -FD.screen_height
+
+					if Px > FD.screen_width:
+						Px = FD.screen_width
+
+					if Py > FD.screen_height:
+						Py = FD.screen_height
+
+
 					projected.append([Px, Py])
 
 				else:
@@ -157,17 +171,6 @@ def render(obj, color, scale=1, perspective_3d=True):
 				projected.append([Px, Py])
 
 
-			if Px < -FD.screen_width:
-				Px = -FD.screen_width
-
-			if Py < -FD.screen_height:
-				Py = -FD.screen_height
-
-			if Px > FD.screen_width:
-				Px = FD.screen_width
-
-			if Py > FD.screen_height:
-				Py = FD.screen_height
 
 
 
