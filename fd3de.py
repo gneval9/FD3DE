@@ -165,43 +165,11 @@ def render(obj, color, scale=1, perspective_3d=True):
 					Py = y
 					projected.append([Px, Py])
 
+
 			except ZeroDivisionError:
 				Px = 0
 				Py = 0
 				projected.append([Px, Py])
-
-
-
-
-
-
-
-
-		elif perspective == "up":
-			print(x,y,z)
-			try:
-
-				if perspective_3d == True:
-					Px = (f * x) / y
-					Py = (f * z) / y
-					projected.append([Px, Py*-1])
-
-				else:
-					Px = x
-					Py = y
-
-			except ZeroDivisionError:
-				Px = 0
-				Py = 0
-				projected.append([Px, Py*-1])
-
-
-		elif perspective == "side":
-			print(x,y,z)
-
-			Px = (f * x) / x
-			Py = (f * z) / x
-			projected.append([Px, Py])
 
 
 
@@ -222,13 +190,13 @@ def render(obj, color, scale=1, perspective_3d=True):
 				x1, y1 = projected[i]
 				x2, y2 = projected[index]
 
-				FD.draw_line(
-					round(x1 + center[0]),
-					round(-y1 + center[1]),
-					round(x2 + center[0]),
-					round(-y2 + center[1]),
-					color
-				)
+				x1C = round(x1 + center[0])
+				y1C = round(y1 + center[1])
+				x2C = round(x2 + center[0])
+				y2C = round(y2 + center[1])				
+
+
+				FD.draw_line(x1C, y1C, x2C, y2C, color)
 
 
 def clear_object(obj, scale=1, perspective_3d=True):
