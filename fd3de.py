@@ -1,5 +1,5 @@
 # Made and developed by gneval9 Software
-# 23-04-2026
+# 07-05-2026
 # V0.1.4
 
 import framedirect as FD
@@ -143,32 +143,18 @@ def render(obj, color, scale=1, perspective_3d=True):
 		# Cámara
 		z += camera_offset
 
-		if z <= 1:
+		if z <= 60:
 			projected.append(None)
 			continue
-
-
+	
 		if perspective == "front":
 			print()
 
 			try:
 
 				if perspective_3d == True:
-					Px = (f * x) / z
-					Py = (f * y) / z
-
-					if Px < -FD.screen_width:
-						Px = -FD.screen_width
-
-					if Py < -FD.screen_height:
-						Py = -FD.screen_height
-
-					if Px > FD.screen_width:
-						Px = FD.screen_width
-
-					if Py > FD.screen_height:
-						Py = FD.screen_height
-
+					Px = ((f * x) * (screen_x / 1500) / z)		
+					Py = ((f * y) * (screen_x / 1500) / z)
 
 					projected.append([Px, Py])
 
@@ -233,6 +219,7 @@ def render(obj, color, scale=1, perspective_3d=True):
 
 				x1, y1 = projected[i]
 				x2, y2 = projected[index]
+			
 
 				FD.draw_line(
 					round(x1 + center[0]),
