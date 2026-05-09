@@ -1,5 +1,5 @@
 # Made and developed by gneval9 Software
-# 07-05-2026
+# 09-05-2026
 # V0.1.4
 
 import framedirect as FD
@@ -27,10 +27,14 @@ screen_y = FD.screen_height
 
 center = (screen_x // 2, screen_y // 2)
 
-f = 330		# Distáncia focal
+f = 330 * (screen_x / 1280)		# Distáncia focal
 camera_offset = 300	# Distancia de la cámara
 
 perspective = "front" # front, up, side
+
+
+
+
 
 # Colores
 RED = FD.RED
@@ -136,25 +140,25 @@ def render(obj, color, scale=1, perspective_3d=True):
 		x, y = x * cosz - y * sinz, x * sinz + y * cosz
 
 		# Traslación
-		x += px
-		y += py
-		z += pz
+		x += px 
+		y += py 
+		z += pz 
 
 		# Cámara
 		z += camera_offset
 
 		if z <= 60:
-			projected.append(None)
-			continue
+			z = 60
+
 	
 		if perspective == "front":
-			print()
+			#print()
 
 			try:
 
 				if perspective_3d == True:
-					Px = ((f * x) * (screen_x / 1500) / z)		
-					Py = ((f * y) * (screen_x / 1500) / z)
+					Px = ((f * x) / z)		
+					Py = ((f * y) / z)
 
 					projected.append([Px, Py])
 

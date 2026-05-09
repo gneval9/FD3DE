@@ -1,4 +1,4 @@
-## FD3DE (FrameDirect 3D Engine) - V0.1.3
+## FD3DE (FrameDirect 3D Engine) - V0.1.4
 
 **FD3DE** es un motor 3D programado en Python3 que utiliza **FrameDirect** para el renderizado en **framebuffer**.  
 La librería permite renderizar figuras 3D creadas por el usuario.
@@ -64,7 +64,7 @@ cubo = fd3de.load("Modelos/cubo.fd3de")
 Se encarga de renderizar el objeto guardado en una variable en la pantalla.
 
 `obj (dict)` → Objeto cargado con **load()**.  
-`color (str)` → Color en formato **ARGB** (en hexadecimal).  
+`color (int)` → Color en formato **ARGB** hexadecimal (ej.: 0x486F6C61).  
 `scale (float)` → Número por el que se multiplicará la escala del objeto (por defecto equivale a 1).
 `perspective (boolean)` → Indica si se aplicará efecto de perspectiva o no al modelo renderizado.
 
