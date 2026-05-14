@@ -1,6 +1,6 @@
 # Made and developed by gneval9 Software
 # 09-05-2026
-# V0.1.4
+# V0.6.0
 
 import framedirect as FD
 import math as m
