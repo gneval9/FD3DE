@@ -1,12 +1,13 @@
 # Made and developed by gneval9 Software
 # 19-05-2026
-# V0.6.1
+# V0.6.3
 
 import framedirect as FD
 import math as m
 import ast
 import atexit
 import curses	
+import pathlib
 
 FD.init()
 curses.initscr()
@@ -53,8 +54,8 @@ def load(path):
 
 	archivo = pathlib.Path(path)
 
-	if archivo.suffix != ".fd3d":
-		print("Error: El archivo no es un .fd3d")
+	if archivo.suffix != ".fd3de":
+		print("Error: El archivo no es un .fd3de")
 		exit()
 
 	with open(path, "r") as f:
