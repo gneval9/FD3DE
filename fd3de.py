@@ -1,6 +1,6 @@
 # Made and developed by gneval9 Software
-# 09-05-2026
-# V0.6.0
+# 19-05-2026
+# V0.6.1
 
 import framedirect as FD
 import math as m
@@ -50,6 +50,13 @@ ORANGE = FD.ORANGE
 
 
 def load(path):
+
+	archivo = pathlib.Path(path)
+
+	if archivo.suffix != ".fd3d":
+		print("Error: El archivo no es un .fd3d")
+		exit()
+
 	with open(path, "r") as f:
 		file = ast.literal_eval(f.read())
 
