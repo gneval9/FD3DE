@@ -9,6 +9,8 @@ import atexit
 import curses	
 import pathlib
 
+import utils
+
 FD.init()
 curses.initscr()
 
@@ -34,9 +36,6 @@ camera_offset = 300	# Distancia de la cámara
 perspective = "front" # front, up, side
 
 
-
-
-
 # Colores
 RED = FD.RED
 GREEN = FD.GREEN
@@ -48,6 +47,8 @@ CYAN = FD.CYAN
 MAGENTA = FD.MAGENTA
 GRAY = FD.GRAY
 ORANGE = FD.ORANGE
+
+
 
 
 def load(path):
