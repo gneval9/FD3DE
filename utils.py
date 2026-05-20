@@ -11,4 +11,4 @@ def relative_deg(p1, p2):
 
 	angle = m.degrees(m.acos(cos_ang))
 
-	return(angle)
+	return(round(angle, 2))
