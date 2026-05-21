@@ -11,7 +11,6 @@ while True:
 	fd3de.rotate("y", 2, cubo)
 	fd3de.rotate("y", -3, pir)
 
-
 	fd3de.render(cubo, fd3de.YELLOW)
 	fd3de.render(pir, fd3de.CYAN)
 
