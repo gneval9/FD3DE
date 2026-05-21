@@ -1,3 +1,7 @@
+# Made and developed by gneval9 Software
+# 21-05-2026
+# V0.8.0
+
 import math as m
 
 
