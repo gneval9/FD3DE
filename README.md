@@ -175,6 +175,36 @@ Devuelve la distancia 2D entre los puntos `p1` y `p2`
 ```python
 fd3de.utils.relative_dist_3D((2,3), (5,4))
 ```
+---
+### vector3D(p1, p2)
+
+Devuelve un vector 3D que va desde `p1` hasta `p2`.
+
+`p1 (tuple)` → Punto 3D inicial (x, y, z)  
+`p2 (tuple)` → Punto 3D final (x, y, z)
+
+---
+### vector2D(p1, p2)
+
+Devuelve un vector 2D que va desde `p1` hasta `p2`.
+
+`p1 (tuple)` → Punto 2D inicial (x, y)  
+`p2 (tuple)` → Punto 2D final (x, y)
+
+---
+### vect_magnitude_3D(vector)
+
+Devuelve la magnitud del vector en 3D.
+
+`vector (tuple)` → Vector 3D (x, y, z)
+
+---
+
+### vect_magnitude_2D(vector)
+
+Devuelve la magnitud del vector en 2D.
+
+`vector (tuple)` → Vector 2D (x, y)
 
 ---
 
