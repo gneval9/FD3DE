@@ -1,4 +1,4 @@
-## FD3DE (FrameDirect 3D Engine) - V0.6.3
+## FD3DE (FrameDirect 3D Engine) - V0.9.0
 
 **FD3DE** es un motor 3D programado en Python3 que utiliza **FrameDirect** para el renderizado en **framebuffer**.  
 La librería permite renderizar figuras 3D creadas por el usuario.
@@ -124,6 +124,86 @@ Actualiza el framebuffer, mostrando todo lo que se haya renderizado con la funci
 
 ```python
 fd3de.update()
+```
+
+---
+
+## Utilidades
+
+FD3DE incluye una serie de funciones pensadas para facilitar tareas comunes durante el desarrollo de videojuegos, especialmente relacionadas con matemáticas, vectores y cálculos espaciales.
+
+Todas las utilidades se encuentran dentro del módulo `utils` y se utilizan mediante:
+
+```python
+fd3de.utils.X()
+```
+---
+
+### relative_deg(p1, p2)
+
+Devuelve el ángulo en grados entre el eje X positivo y el vector que va de `p1` a `p2`, en el plano XY (2D).
+
+`p1 (tuple)` → Punto 2D inicial (x, y)
+`p2 (tuple)` → Punto 2D final (x, y)
+
+```python
+fd3de.utils.relative_deg((2,5), (4,1))
+```
+
+---
+
+### relative_dist_3D(p1, p2)
+
+Devuelve la distancia 3D entre los puntos `p1` y `p2` 
+
+`p1 (tuple)` → Punto 3D inicial (x, y, z)  
+`p2 (tuple)` → Punto 3D final (x, y, z)
+
+```python
+fd3de.utils.relative_dist_3D((1,5,3), (7,3,4))
+```
+
+---
+
+### relative_dist_2D(p1, p2)
+
+Devuelve la distancia 2D entre los puntos `p1` y `p2` 
+
+`p1 (tuple)` → Punto 2D inicial (x, y)  
+`p2 (tuple)` → Punto 2D final (x, y)
+ 
+```python
+fd3de.utils.relative_dist_3D((2,3), (5,4))
+```
+
+---
+
+### normalize3D(vector)
+
+Convierte un vector 3D en un vector unitario.
+
+`vector (tuple)` → Vector 3D a normalizar
+
+---
+
+### normalize2D(vector)
+
+Convierte un vector 2D en un vector unitario.
+
+`vector (tuple)` → Vector 2D a normalizar
+
+---
+
+## clamp(val, min_val, max_val)
+
+Limita el valor de `val` al rango definido entre `min_val` y `max_val`.
+
+`val (int | float)` → Valor a limitar
+`min_val (int | float)` → Valor mínimo permitido
+`max_val (int | float)` → Valor máximo permitido
+
+```python
+fd3de.utils.clamp(3, 2, 8)
 ```
 
 ---
