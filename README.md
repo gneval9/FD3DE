@@ -31,7 +31,7 @@ pip install fd3de
 import fd3de
 
 cubo_load = fd3de.load("Modelos/cubo.fd3de")  # Cargar modelo 3D
-cubo = fd3de.spawn(cubo) 	# Spawnear modelo 3D
+cubo = fd3de.spawn(cubo_load) 	# Spawnear modelo 3D
 
 fd3de.move("x", -170, cubo)                 # Mover el modelo -170 unidades en el eje X
 
@@ -61,7 +61,7 @@ cubo_load = fd3de.load("Modelos/cubo.fd3de")
 
 ### spawn(model)
 
-Carga el modelo 3D desde una variable. Es esta la que se utilizará en funciones como `render()` o `rotate()`.  
+Crea una instancia del modelo en la escena a partir de un modelo previamente cargado con `load()`. La instancia que devuelve es la que se utiliza después en funciones como `render()` o `rotate()`.  
 
 `model (list)` → Variable en la que se ha cargado el modelo con `load()`.  
 
@@ -75,7 +75,7 @@ cubo = fd3de.spawn(cubo_load)
 
 Se encarga de renderizar el objeto guardado en una variable en la pantalla.
 
-`obj (dict)` → Objeto cargado con **load()**.  
+`obj (dict)` → Objeto cargado con `spawn()`.  
 `color (int)` → Color en formato **ARGB** hexadecimal (ej.: 0x486F6C61).  
 `scale (float)` → Número por el que se multiplicará la escala del objeto (por defecto equivale a 1).  
 `perspective (boolean)` → Indica si se aplicará efecto de perspectiva o no al modelo renderizado.
