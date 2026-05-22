@@ -1,4 +1,4 @@
-## FD3DE (FrameDirect 3D Engine) - V0.9.0
+## FD3DE (FrameDirect 3D Engine) - V0.10.1
 
 **FD3DE** es un motor 3D programado en Python3 que utiliza **FrameDirect** para el renderizado en **framebuffer**.  
 La librería permite renderizar figuras 3D creadas por el usuario.
@@ -30,7 +30,8 @@ pip install fd3de
 ```python
 import fd3de
 
-cubo = fd3de.load("Modelos/cubo.fd3de")  # Cargar modelo 3D
+cubo_load = fd3de.load("Modelos/cubo.fd3de")  # Cargar modelo 3D
+cubo = fd3de.spawn(cubo) 	# Spawnear modelo 3D
 
 fd3de.move("x", -170, cubo)                 # Mover el modelo -170 unidades en el eje X
 
@@ -54,7 +55,18 @@ Sirve para cargar un modelo. Se asigna a una variable como se muestra a continua
 `path (str)` → Ruta del archivo del modelo.
 
 ```python
-cubo = fd3de.load("Modelos/cubo.fd3de")
+cubo_load = fd3de.load("Modelos/cubo.fd3de")
+```
+---
+
+### spawn(model)
+
+Carga el modelo 3D desde una variable. Es esta la que se utilizará en funciones como `render()` o `rotate()`.  
+
+`model (list)` → Variable en la que se ha cargado el modelo con `load()`.  
+
+```python
+cubo = fd3de.spawn(cubo_load)  
 ```
 
 ---
