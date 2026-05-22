@@ -1,28 +1,27 @@
 # Made and developed by gneval9 Software
 # 21-05-2026
-# V0.8.0
+# V0.8.1
 
 import framedirect as FD
 import math as m
 import ast
 import atexit
-import curses	
+import os
 import pathlib
 
-import utils
+from . import utils
 
 FD.init()
-curses.initscr()
+
+os.system("tput civis")
+os.system("stty -echo")
 
 def close_all():
 	FD.close()
-	curses.endwin()
-	curses.curs_set(1)
+	os.system("tput cnorm")
+	os.system("stty echo")
 
 atexit.register(close_all)
-
-curses.noecho()
-curses.curs_set(0)
 
 
 screen_x = FD.screen_width
