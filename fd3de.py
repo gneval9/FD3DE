@@ -1,6 +1,6 @@
 # Made and developed by gneval9 Software
 # 22-05-2026
-# V0.9.0
+# V0.10.0
 
 import framedirect as FD
 import math as m
@@ -61,8 +61,12 @@ def load(path):
 	with open(path, "r") as f:
 		file = ast.literal_eval(f.read())
 
+	return(file)
+
+
+def spawn(model):
 	return {
-		"original": file,
+		"original": model,
 		"rotation": [0, 0, 0],
 		"position": [0, 0, 0]
 	}
