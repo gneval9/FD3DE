@@ -1,6 +1,6 @@
 # Made and developed by gneval9 Software
-# 21-05-2026
-# V0.8.1
+# 22-05-2026
+# V0.9.0
 
 import math as m
 
@@ -14,7 +14,6 @@ def relative_deg(p1, p2):
 	return(round(angle, 2))
 
 
-
 def relative_dist_3D(p1, p2):
 	vector = vector3D(p1, p2)
 
@@ -24,10 +23,50 @@ def relative_dist_3D(p1, p2):
 
 
 
-def relative_dist_2D(p1, p2):
-	x1, y1 = p1
-	x2, y2 = p2
+def clamp(val, min_val, max_val):
+	if min_val <= val <= max_val:
+		return(val)
 
+	elif val < min_val:
+		return(min_val)
+	
+	elif val > max_val:
+		return(max_val)
+
+
+
+
+def normalize2D(vector):
+	mag = vect_magnitude_2D(vector)
+	
+	if mag == 0:
+		return((0,0))
+	else:
+		norm_vect = (
+			vector[0] / mag,
+			vector[1] / mag
+			)
+
+		return(norm_vect)
+
+
+def normalize3D(vector):
+	mag = vect_magnitude_3D(vector)
+	
+	if mag == 0:
+		return((0,0,0))
+	else:
+		norm_vect = (
+			vector[0] / mag, 
+			vector[1] / mag, 
+			vector[2] / mag
+			)
+
+		return(norm_vect)
+
+
+
+def relative_dist_2D(p1, p2):
 	vector = vector_2D(p1, p2)
 
 	dist = vect_magnitude_2D(vector)
@@ -49,10 +88,12 @@ def vector3D(p1, p2):
 	return(vect)
 
 
+
 def vect_magnitude_3D(vector):
 	mag = ((vector[0]**2) + (vector[1]**2) + (vector[2]**2)) ** 0.5
 
 	return(mag)
+
 
 def vect_magnitude_2D(vector):
 	mag = ((vector[0]**2) + (vector[1]**2)) ** 0.5
