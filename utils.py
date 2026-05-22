@@ -22,32 +22,39 @@ def relative_dist_3D(p1, p2):
 	return(dist)
 
 
+def relative_dist_2D(p1, p2):
+	vector = vector_2D(p1, p2)
 
-def clamp(val, min_val, max_val):
-	if min_val <= val <= max_val:
-		return(val)
+	dist = vect_magnitude_2D(vector)
 
-	elif val < min_val:
-		return(min_val)
+	return(dist)
+
+
+
+def vector3D(p1, p2):	
+	vect = (p2[0] - p1[0], p2[1] - p1[1], p2[2] - p1[2])
 	
-	elif val > max_val:
-		return(max_val)
+	return(vect)
 
 
 
+def vector2D(p1, p2):	
+	vect = (p2[0] - p1[0], p2[1] - p1[1])
 
-def normalize2D(vector):
-	mag = vect_magnitude_2D(vector)
-	
-	if mag == 0:
-		return((0,0))
-	else:
-		norm_vect = (
-			vector[0] / mag,
-			vector[1] / mag
-			)
+	return(vect)
 
-		return(norm_vect)
+
+
+def vect_magnitude_3D(vector):
+	mag = ((vector[0]**2) + (vector[1]**2) + (vector[2]**2)) ** 0.5
+
+	return(mag)
+
+
+def vect_magnitude_2D(vector):
+	mag = ((vector[0]**2) + (vector[1]**2)) ** 0.5
+
+	return(mag)
 
 
 def normalize3D(vector):
@@ -65,37 +72,29 @@ def normalize3D(vector):
 		return(norm_vect)
 
 
-
-def relative_dist_2D(p1, p2):
-	vector = vector_2D(p1, p2)
-
-	dist = vect_magnitude_2D(vector)
-
-	return(dist)
-
-
-
-def vector2D(p1, p2):	
-	vect = (p2[0] - p1[0], p2[1] - p1[1])
-
-	return(vect)
-
-
-
-def vector3D(p1, p2):	
-	vect = (p2[0] - p1[0], p2[1] - p1[1], p2[2] - p1[2])
+def normalize2D(vector):
+	mag = vect_magnitude_2D(vector)
 	
-	return(vect)
+	if mag == 0:
+		return((0,0))
+	else:
+		norm_vect = (
+			vector[0] / mag,
+			vector[1] / mag
+			)
+
+		return(norm_vect)
 
 
 
-def vect_magnitude_3D(vector):
-	mag = ((vector[0]**2) + (vector[1]**2) + (vector[2]**2)) ** 0.5
+def clamp(val, min_val, max_val):
+	if min_val <= val <= max_val:
+		return(val)
 
-	return(mag)
+	elif val < min_val:
+		return(min_val)
+	
+	elif val > max_val:
+		return(max_val)
 
 
-def vect_magnitude_2D(vector):
-	mag = ((vector[0]**2) + (vector[1]**2)) ** 0.5
-
-	return(mag)
