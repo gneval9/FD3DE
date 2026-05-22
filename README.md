@@ -65,7 +65,7 @@ Se encarga de renderizar el objeto guardado en una variable en la pantalla.
 
 `obj (dict)` → Objeto cargado con **load()**.  
 `color (int)` → Color en formato **ARGB** hexadecimal (ej.: 0x486F6C61).  
-`scale (float)` → Número por el que se multiplicará la escala del objeto (por defecto equivale a 1).
+`scale (float)` → Número por el que se multiplicará la escala del objeto (por defecto equivale a 1).  
 `perspective (boolean)` → Indica si se aplicará efecto de perspectiva o no al modelo renderizado.
 
 ```python
@@ -107,9 +107,9 @@ fd3de.rotate("y", 35, cubo)
 Redibuja el objeto sobre sí mismo en color negro para borrarlo (es más eficiente que pintar toda la pantalla de negro).
 Como utiliza directamente la función `render()` para eso, requiere tener los mismos argumentos que esta para funcionar correctamente.
 
-`obj (dict)` → Objeto a borrar.
-`scale (float)` → Número por el que se multiplicará la escala del objeto (por defecto equivale a 1).
-`perspective (boolean)` → Indica si se aplicará efecto de perspectiva o no al modelo renderizado.
+`obj (dict)` → Objeto a borrar.  
+`scale (float)` → Número por el que se multiplicará la escala del objeto (por defecto equivale a 1).  
+`perspective (boolean)` → Indica si se aplicará efecto de perspectiva o no al modelo renderizado.  
 
 
 ```python
@@ -143,8 +143,8 @@ fd3de.utils.X()
 
 Devuelve el ángulo en grados entre el eje X positivo y el vector que va de `p1` a `p2`, en el plano XY (2D).
 
-`p1 (tuple)` → Punto 2D inicial (x, y)
-`p2 (tuple)` → Punto 2D final (x, y)
+`p1 (tuple)` → Punto 2D inicial (x, y)  
+`p2 (tuple)` → Punto 2D final (x, y)  
 
 ```python
 fd3de.utils.relative_deg((2,5), (4,1))
@@ -248,9 +248,9 @@ fd3de.utils.normalize2D((1,2))
 
 Limita el valor de `val` al rango definido entre `min_val` y `max_val`.
 
-`val (int | float)` → Valor a limitar
-`min_val (int | float)` → Valor mínimo permitido
-`max_val (int | float)` → Valor máximo permitido
+`val (int | float)` → Valor a limitar  
+`min_val (int | float)` → Valor mínimo permitido  
+`max_val (int | float)` → Valor máximo permitido  
 
 ```python
 fd3de.utils.clamp(3, 2, 8)
