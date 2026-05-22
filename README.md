@@ -152,7 +152,7 @@ fd3de.utils.relative_deg((2,5), (4,1))
 
 ---
 
-### relative_dist_3D(p1, p2)
+### relative_dist_3D(p1, p2)
 
 Devuelve la distancia 3D entre los puntos `p1` y `p2` 
 
@@ -176,44 +176,60 @@ Devuelve la distancia 2D entre los puntos `p1` y `p2`
 fd3de.utils.relative_dist_3D((2,3), (5,4))
 ```
 ---
-### vector3D(p1, p2)
+### vector3D(p1, p2)
 
 Devuelve un vector 3D que va desde `p1` hasta `p2`.
 
 `p1 (tuple)` → Punto 3D inicial (x, y, z)  
 `p2 (tuple)` → Punto 3D final (x, y, z)
 
+```python
+fd3de.utils.vector3D((3,4,8), (1,6,3))
+```
+
 ---
-### vector2D(p1, p2)
+### vector2D(p1, p2)
 
 Devuelve un vector 2D que va desde `p1` hasta `p2`.
 
 `p1 (tuple)` → Punto 2D inicial (x, y)  
 `p2 (tuple)` → Punto 2D final (x, y)
 
+```python
+fd3de.utils.vector2D((3,8), (6,9))
+```
+
 ---
-### vect_magnitude_3D(vector)
+### vect_magnitude_3D(vector)
 
 Devuelve la magnitud del vector en 3D.
 
 `vector (tuple)` → Vector 3D (x, y, z)
 
----
+```python
+fd3de.utils.vect_magnitude_3D((5,1,2))
+```
 
-### vect_magnitude_2D(vector)
+---
+### vect_magnitude_2D(vector)
 
 Devuelve la magnitud del vector en 2D.
 
 `vector (tuple)` → Vector 2D (x, y)
 
+```python
+fd3de.utils.vect_magnitude_2D((7,5))
+```
 ---
-
 ### normalize3D(vector)
 
 Convierte un vector 3D en un vector unitario.
 
 `vector (tuple)` → Vector 3D a normalizar
 
+```python
+fd3de.utils.normalize3D((6,4,2))
+```
 ---
 
 ### normalize2D(vector)
@@ -222,9 +238,13 @@ Convierte un vector 2D en un vector unitario.
 
 `vector (tuple)` → Vector 2D a normalizar
 
+```python
+fd3de.utils.normalize2D((1,2))
+```
+
 ---
 
-## clamp(val, min_val, max_val)
+### clamp(val, min_val, max_val)
 
 Limita el valor de `val` al rango definido entre `min_val` y `max_val`.
 
