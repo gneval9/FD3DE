@@ -30,7 +30,7 @@ screen_y = FD.screen_height
 center = (screen_x // 2, screen_y // 2)
 
 f = 330 * (screen_x / 1280)		# Distáncia focal
-camera_offset = 300	# Distancia de la cámara
+camera_offset = -300	# Distancia de la cámara
 
 perspective = "front" # front, up, side
 
@@ -157,7 +157,7 @@ def render(obj, color, scale=1, perspective_3d=True):
 		z += pz 
 
 		# Cámara
-		z += camera_offset
+		z -= camera_offset
 
 		if z <= 60:
 			z = 60
