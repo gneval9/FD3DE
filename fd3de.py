@@ -1,6 +1,6 @@
 # Made and developed by gneval9 Software
 # 22-05-2026
-# V0.11.0
+# V0.10.1
 
 import framedirect as FD
 import math as m
@@ -29,8 +29,8 @@ screen_y = FD.screen_height
 
 center = (screen_x // 2, screen_y // 2)
 
-f = 330 * (screen_x / 1280)	* 10 	     # Distáncia focal
-camera_offset = -300	* 10             # Distancia de la cámara
+f = 330 * (screen_x / 1280)	 	     # Distáncia focal
+camera_offset = -300             # Distancia de la cámara
 
 perspective = "front" # front, up, side
 
