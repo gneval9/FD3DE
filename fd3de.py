@@ -169,8 +169,8 @@ def render(obj, color, scale=1, perspective_3d=True):
 			try:
 
 				if perspective_3d == True:
-					Px = ((f * x) / z)		
-					Py = ((f * y) / z)
+					Px = ((f * x) / z)		 #Comprobar si haciendo una division entera (//) hay problemas de rendimiento.
+					Py = ((f * y) / z)  #No he podido observar que se disparen lo valores.
 
 					projected.append([Px, Py])
 
