@@ -1,6 +1,6 @@
 # Made and developed by gneval9 Software
-# 31-05-2026
-# V0.10.1
+# 20-10-2026
+# V0.11.0
 
 import framedirect as FD
 import math as m
@@ -27,10 +27,13 @@ atexit.register(close_all)
 screen_x = FD.screen_width
 screen_y = FD.screen_height
 
+scene = []
+
+
 center = (screen_x // 2, screen_y // 2)
 
-f = 330 * (screen_x / 1280)	 	     # Distáncia focal
-camera_offset = -300             # Distancia de la cámara
+f = 330 * (screen_x / 1280)		# Distáncia focal
+camera_offset = 300	# Distancia de la cámara
 
 perspective = "front" # front, up, side
 
@@ -72,8 +75,10 @@ def spawn(model):
 	}
 
 
+
 def update():
 	FD.update()
+
 
 
 def get_center(obj):
@@ -122,6 +127,26 @@ def rotate(axis, angle, obj):
 		exit()
 
 
+
+
+def scene_add(obj, color, scale=1, perspective_3d=True):
+    scene.append((obj, color, scale, perspective_3d))
+
+
+
+def render_scene():
+    for n in range(len(scene)):
+        render(*scene[n])
+    
+    update()
+
+
+    for n in range(len(scene)):
+        clear_object(*scene[n])
+
+
+
+
 def render(obj, color, scale=1, perspective_3d=True):
 
 	projected = []
@@ -157,7 +182,7 @@ def render(obj, color, scale=1, perspective_3d=True):
 		z += pz 
 
 		# Cámara
-		z -= camera_offset
+		z += camera_offset
 
 		if z <= 60:
 			z = 60
@@ -169,8 +194,8 @@ def render(obj, color, scale=1, perspective_3d=True):
 			try:
 
 				if perspective_3d == True:
-					Px = ((f * x) / z)		#Comprobar si haciendo una division entera (//) hay problemas de rendimiento.
-					Py = ((f * y) / z)  	#No he podido observar que se disparen lo valores.
+					Px = ((f * x) / z)		
+					Py = ((f * y) / z)
 
 					projected.append([Px, Py])
 
@@ -246,5 +271,7 @@ def render(obj, color, scale=1, perspective_3d=True):
 				)
 
 
-def clear_object(obj, scale=1, perspective_3d=True):
+
+
+def clear_object(obj, color, scale=1, perspective_3d=True):
 	render(obj, BLACK, scale, perspective_3d)
