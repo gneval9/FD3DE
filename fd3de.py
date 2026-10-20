@@ -1,6 +1,6 @@
 # Made and developed by gneval9 Software
 # 20-10-2026
-# V0.11.0
+# V0.11.1
 
 import framedirect as FD
 import math as m
@@ -142,7 +142,7 @@ def render_scene():
 
 
     for n in range(len(scene)):
-        clear_object(*scene[n])
+        clear_object(*scene[n][:1], *scene[n][2:])
 
 
 
@@ -273,5 +273,5 @@ def render(obj, color, scale=1, perspective_3d=True):
 
 
 
-def clear_object(obj, color, scale=1, perspective_3d=True):
+def clear_object(obj, scale=1, perspective_3d=True):
 	render(obj, BLACK, scale, perspective_3d)
