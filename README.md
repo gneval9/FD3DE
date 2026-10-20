@@ -1,4 +1,4 @@
-## FD3DE (FrameDirect 3D Engine) - V0.10.1
+## FD3DE (FrameDirect 3D Engine) - V0.11.1
 
 **FD3DE** es un motor 3D programado en Python3 que utiliza **FrameDirect** para el renderizado en **framebuffer**.  
 La librería permite renderizar figuras 3D creadas por el usuario.
@@ -24,24 +24,41 @@ pip install fd3de
 ```
 
 ---
+## Uso básico (Con scene)
+```python
+import fd3de
 
-## Uso básico
+cubo_load = fd3de.load("Modelos/cubo.fd3de")  # Cargar el modelo 3D
+cubo = fd3de.spawn(cubo_load)                 # Crear una instancia del modelo 3D
+
+fd3de.scene_add(cubo, fd3de.YELLOW)           # Añade la instancia a la escena
+
+fd3de.move("x", -170, cubo)                   # Mover el modelo -170 unidades en el eje X
+
+while True:
+    fd3de.rotate("y", 2, cubo)                # Rotar el modelo 2 grados en el eje Y
+
+    fd3de.render_scene()                      # Renderizar la escena
+
+```
+
+## Uso básico (Sin scene)
 
 ```python
 import fd3de
 
 cubo_load = fd3de.load("Modelos/cubo.fd3de")  # Cargar modelo 3D
-cubo = fd3de.spawn(cubo_load) 	# Spawnear modelo 3D
+cubo = fd3de.spawn(cubo_load) 	              # Crear una instancia del modelo 3D
 
-fd3de.move("x", -170, cubo)                 # Mover el modelo -170 unidades en el eje X
+fd3de.move("x", -170, cubo)                   # Mover el modelo -170 unidades en el eje X
 
 while True:
-    fd3de.rotate("y", 2, cubo)              # Rotar el modelo 2 grados en el eje Y
+    fd3de.rotate("y", 2, cubo)                # Rotar el modelo 2 grados en el eje Y
 
-    fd3de.render(cubo, fd3de.YELLOW)     # Renderizar el modelo de color amarillo
-    fd3de.update()                       # Actualizar el framebuffer
+    fd3de.render(cubo, fd3de.YELLOW)          # Renderizar el modelo en amarillo
+    fd3de.update()                            # Actualizar el framebuffer
 
-    fd3de.clear_object(cubo)             # Borrar el modelo (redibujando por encima suyo)
+    fd3de.clear_object(cubo)                  # Borrar el modelo (redibujando en negro por encima suyo)
 ```
 
 ---
@@ -61,13 +78,38 @@ cubo_load = fd3de.load("Modelos/cubo.fd3de")
 
 ### spawn(model)
 
-Crea una instancia del modelo en la escena a partir de un modelo previamente cargado con `load()`. La instancia que devuelve es la que se utiliza después en funciones como `render()` o `rotate()`.  
+Crea una instancia del modelo a partir de un modelo previamente cargado con `load()`. La instancia que devuelve es la que se utiliza después en funciones como `render()` o `rotate()`.  
 
 `model (list)` → Variable en la que se ha cargado el modelo con `load()`.  
 
 ```python
 cubo = fd3de.spawn(cubo_load)  
 ```
+
+---
+### scene_add(obj, color, scale=1, perspective=True)
+
+Añade la instancia del modelo dado a la escena.
+
+`obj (dict)` → Objeto cargado con `spawn()`.  
+`color (int)` → Color en formato **ARGB** hexadecimal (ej.: 0x486F6C61).  
+`scale (float)` → Número por el que se multiplicará la escala del objeto (por defecto equivale a 1).  
+`perspective (boolean)` → Indica si se aplicará efecto de perspectiva o no al modelo renderizado.
+
+```python
+fd3de.scene_add(cubo, fd3de.RED, 3, True)
+```
+
+---
+### render_scene()
+
+Renderiza todos los modelos que se encuentren en la escena.
+
+```python
+fd3de.render_scene()
+```
+Como todos los modelos son renderizados de una sola vez, estos serán redibujados automáticamente cada vez que
+se actualice el framebuffer, por ende no será necesario usar `clear_object()`.
 
 ---
 
@@ -88,10 +130,10 @@ fd3de.render(cubo, fd3de.RED, 2, True)
 
 ### move(axis, dist, obj)
 
-Mueve el objeto un número determinado de píxeles.
+Mueve el objeto un número determinado de unidades.
 
 `axis (str)` → Eje en el que se moverá (opciones válidas: "x", "y" y "z").  
-`dist (int)` → Número de píxeles que el objeto se desplazará.  
+`dist (int)` → Número de unidades que el objeto se desplazará.  
 `obj (dict)` → Objeto a mover.
 
 ```python
@@ -185,7 +227,7 @@ Devuelve la distancia 2D entre los puntos `p1` y `p2`
 `p2 (tuple)` → Punto 2D final (x, y)
  
 ```python
-fd3de.utils.relative_dist_3D((2,3), (5,4))
+fd3de.utils.relative_dist_2D((2,3), (5,4))
 ```
 ---
 ### vector3D(p1, p2)
