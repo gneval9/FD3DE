@@ -181,7 +181,26 @@ fd3de.update()
 ```
 
 ---
+## Colores
 
+FD3DE incluye varios colores predeterminados para usarlos de forma cómoda en lugar de utilizar los
+códigos hexadecimales.
+
+```python
+fd3de.RED
+fd3de.GREEN
+fd3de.BLUE
+fd3de.WHITE
+fd3de.BLACK
+fd3de.YELLOW
+fd3de.CYAN
+fd3de.MAGENTA
+fd3de.GRAY
+fd3de.ORANGE
+```
+
+
+---
 ## Utilidades
 
 FD3DE incluye una serie de funciones pensadas para facilitar tareas comunes durante el desarrollo de videojuegos, especialmente relacionadas con matemáticas, vectores y cálculos espaciales.
