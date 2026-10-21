@@ -1,4 +1,4 @@
-## FD3DE (FrameDirect 3D Engine) - V0.11.1
+## FD3DE (FrameDirect 3D Engine) - V0.12.0
 
 **FD3DE** es un motor 3D programado en Python3 que utiliza **FrameDirect** para el renderizado en **framebuffer**.  
 La librería permite renderizar figuras 3D creadas por el usuario.
@@ -55,10 +55,10 @@ fd3de.move("x", -170, cubo)                   # Mover el modelo -170 unidades en
 while True:
     fd3de.rotate("y", 2, cubo)                # Rotar el modelo 2 grados en el eje Y
 
-    fd3de.render(cubo, fd3de.YELLOW)          # Renderizar el modelo en amarillo
+    fd3de.render(cubo, fd3de.YELLOW, 2, True) # Renderizar el modelo en amarillo
     fd3de.update()                            # Actualizar el framebuffer
 
-    fd3de.clear_object(cubo)                  # Borrar el modelo (redibujando en negro por encima suyo)
+    fd3de.clear_object(cubo, 2, True)         # Borrar el modelo (redibujando en negro por encima suyo)
 ```
 
 ---
@@ -87,40 +87,50 @@ cubo = fd3de.spawn(cubo_load)
 ```
 
 ---
-### scene_add(obj, color, scale=1, perspective=True)
+### scene_add(obj, color, scale=1, perspective_3d=True)
 
-Añade la instancia del modelo dado a la escena.
+Añade la instancia del modelo dado a la escena. No se puede añadir el mismo objeto a la escena más de una vez.
+En ese caso, se lanzará un `ValueError`.
 
 `obj (dict)` → Objeto cargado con `spawn()`.  
 `color (int)` → Color en formato **ARGB** hexadecimal (ej.: 0x486F6C61).  
 `scale (float)` → Número por el que se multiplicará la escala del objeto (por defecto equivale a 1).  
-`perspective (boolean)` → Indica si se aplicará efecto de perspectiva o no al modelo renderizado.
+`perspective_3d (boolean)` → Indica si se aplicará efecto de perspectiva o no al modelo renderizado.
 
 ```python
 fd3de.scene_add(cubo, fd3de.RED, 3, True)
+```
+---
+### scene_del(obj)
+
+Borra el objeto dado de la escena. La función comprueba si `obj` es la misma instancia que un objeto registrado en la escena. Si encuentra una coincidencia, elimina el objeto de la pantalla y lo retira de la escena.
+
+
+`obj (dict)` → Objeto cargado con `spawn()`.
+
+```python
+fd3de.scene_del(cubo)
 ```
 
 ---
 ### render_scene()
 
-Renderiza todos los modelos que se encuentren en la escena.
+Al llamar a esta función, se renderizan todos los objetos registrados en la escena. A continuación, se actualiza el framebuffer mediante `update()` y, finalmente, se borran las representaciones de los objetos dibujando sus aristas en negro con `clear_object()`. Esto simplifica el renderizado de escenas animadas, ya que no es necesario borrar manualmente cada objeto.
 
 ```python
 fd3de.render_scene()
 ```
-Como todos los modelos son renderizados de una sola vez, estos serán redibujados automáticamente cada vez que
-se actualice el framebuffer, por ende no será necesario usar `clear_object()`.
 
 ---
 
-### render(obj, color, scale=1, perspective=True)
+### render(obj, color, scale=1, perspective_3d=True)
 
 Se encarga de renderizar el objeto guardado en una variable en la pantalla.
 
 `obj (dict)` → Objeto cargado con `spawn()`.  
 `color (int)` → Color en formato **ARGB** hexadecimal (ej.: 0x486F6C61).  
 `scale (float)` → Número por el que se multiplicará la escala del objeto (por defecto equivale a 1).  
-`perspective (boolean)` → Indica si se aplicará efecto de perspectiva o no al modelo renderizado.
+`perspective_3d (boolean)` → Indica si se aplicará efecto de perspectiva o no al modelo renderizado.
 
 ```python
 fd3de.render(cubo, fd3de.RED, 2, True)
@@ -156,14 +166,14 @@ fd3de.rotate("y", 35, cubo)
 
 ---
 
-### clear_object(obj, scale=1, perspective=True)
+### clear_object(obj, scale=1, perspective_3d=True)
 
 Redibuja el objeto sobre sí mismo en color negro para borrarlo (es más eficiente que pintar toda la pantalla de negro).
-Como utiliza directamente la función `render()` para eso, requiere tener los mismos argumentos que esta para funcionar correctamente.
+Como para ello utiliza directamente la función `render()`, requiere tener los mismos argumentos que esta para funcionar correctamente.
 
 `obj (dict)` → Objeto a borrar.  
 `scale (float)` → Número por el que se multiplicará la escala del objeto (por defecto equivale a 1).  
-`perspective (boolean)` → Indica si se aplicará efecto de perspectiva o no al modelo renderizado.  
+`perspective_3d (boolean)` → Indica si se aplicará efecto de perspectiva o no al modelo renderizado.  
 
 
 ```python
