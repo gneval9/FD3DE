@@ -193,7 +193,7 @@ fd3de.update()
 ---
 ## Colores
 
-FD3DE incluye varios colores predeterminados para usarlos de forma cómoda en lugar de utilizar los
+FD3DE viene con varios colores predeterminados para usarlos de forma cómoda en lugar de utilizar los
 códigos hexadecimales.
 
 ```python
