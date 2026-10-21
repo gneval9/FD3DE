@@ -1,6 +1,6 @@
 # Made and developed by gneval9 Software
 # 20-10-2026
-# V0.11.1
+# V0.12.0
 
 import framedirect as FD
 import math as m
@@ -98,6 +98,8 @@ def get_center(obj):
 	return (cx, cy, cz)
 
 
+
+
 def move(axis, dist, obj):
 	if axis == "x":
 		obj["position"][0] += dist
@@ -111,6 +113,9 @@ def move(axis, dist, obj):
 	else:
 		print(f"Error: '{axis}' no es un argumento válido para la función 'move()'")
 		exit()
+
+
+
 
 def rotate(axis, angle, obj):
 	if axis == "x":
@@ -130,19 +135,30 @@ def rotate(axis, angle, obj):
 
 
 def scene_add(obj, color, scale=1, perspective_3d=True):
-    scene.append((obj, color, scale, perspective_3d))
+	for n in scene:
+		if n[0] is obj:
+			raise ValueError(f"El objeto ya existe en la escena.")
+	
+	scene.append((obj, color, scale, perspective_3d))
 
+
+def scene_del(obj):
+	for n in scene:
+		if n[0] is obj:
+			clear_object(n[0], n[2], n[3])
+			scene.remove(n)
+			break
 
 
 def render_scene():
-    for n in range(len(scene)):
-        render(*scene[n])
-    
-    update()
+	for n in range(len(scene)):
+		render(*scene[n])
+	
+	update()
 
 
-    for n in range(len(scene)):
-        clear_object(*scene[n][:1], *scene[n][2:])
+	for n in range(len(scene)):
+		clear_object(*scene[n][:1], *scene[n][2:])
 
 
 
