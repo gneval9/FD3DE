@@ -23,7 +23,7 @@ def relative_dist_3D(p1, p2):
 
 
 def relative_dist_2D(p1, p2):
-	vector = vector_2D(p1, p2)
+	vector = vector2D(p1, p2)
 
 	dist = vect_magnitude_2D(vector)
 
