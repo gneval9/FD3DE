@@ -1,3 +1,6 @@
+# Made and developed by gneval9 Software
+# 22-10-2026
+
 import fd3de
 import keyboard
 import FDWriter
@@ -14,13 +17,14 @@ cubo3 = fd3de.spawn(fd3de.load("Modelos/cubo.fd3de"))
 mini_plano = fd3de.spawn(fd3de.load("Modelos/cubo.fd3de"))
 hitbox = fd3de.spawn(fd3de.load("Modelos/cubo.fd3de"))
 
+fd3de.scene_new("main")
 
-fd3de.scene_add(nave, fd3de.RED, 1, True)
-fd3de.scene_add(plano, fd3de.GREEN, 1)
+fd3de.scene_add("main", nave, fd3de.RED, 1, True)
+fd3de.scene_add("main", plano, fd3de.GREEN, 1)
 
-fd3de.scene_add(cubo, fd3de.YELLOW)
-fd3de.scene_add(cubo2, fd3de.MAGENTA)
-fd3de.scene_add(cubo3, fd3de.CYAN)
+fd3de.scene_add("main", cubo, fd3de.YELLOW)
+fd3de.scene_add("main", cubo2, fd3de.MAGENTA)
+fd3de.scene_add("main", cubo3, fd3de.CYAN)
 
 
 
@@ -78,7 +82,7 @@ top = -100
 
 
 def render():
-    fd3de.render_scene()        
+    fd3de.render_scene("main")        
        
   
 
@@ -116,11 +120,11 @@ while True:
         time.sleep(0.05)
     
         if debug == True:
-            fd3de.scene_add(mini_plano, fd3de.WHITE, 0.2)
-            fd3de.scene_add(hitbox, fd3de.GREEN, 0.2)
+            fd3de.scene_add("main", mini_plano, fd3de.WHITE, 0.2)
+            fd3de.scene_add("main", hitbox, fd3de.GREEN, 0.2)
         elif debug == False:
-            fd3de.scene_del(mini_plano)
-            fd3de.scene_del(hitbox)
+            fd3de.scene_del("main", mini_plano)
+            fd3de.scene_del("main", hitbox)
 
     if keyboard.is_pressed("o"):
         god_mode = not god_mode
