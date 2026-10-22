@@ -1,4 +1,4 @@
-## FD3DE (FrameDirect 3D Engine) - V0.13.0
+## FD3DE (FrameDirect 3D Engine) - V0.14.0
 
 **FD3DE** es un motor 3D programado en Python3 que utiliza **FrameDirect** para el renderizado en **framebuffer**.  
 La librería permite renderizar figuras 3D creadas por el usuario.
@@ -33,7 +33,7 @@ cubo = fd3de.spawn(cubo_load)                                     # Crear una in
 
 fd3de.scene_new("EscenaPrincipal")                                # Crear la escena "EscenaPrincipal"
 
-fd3de.scene_add("EscenePrincipal", cubo, fd3de.YELLOW)            # Añadir la instancia a la escena
+fd3de.scene_add("EscenaPrincipal", cubo, fd3de.YELLOW)            # Añadir la instancia a la escena
 
 fd3de.move("x", -170, cubo)                                       # Mover el modelo -170 unidades en el eje X
 
@@ -90,7 +90,8 @@ cubo = fd3de.spawn(cubo_load)
 
 ### scene_new(scene)
 
-Crea una escena con el nombre asignado.
+Crea una escena con el nombre asignado. Una escena alberga una serie de modelos 3D, los cuales pueden ser renderizados de una sola vez. Se pueden
+tener varias escenas y renderizarlas por separado. El nombre "ALL" está reservado. En caso de ser utilizado se lanzará un `ValueError`.
 
 `scene (str)` → Nombre de la escena.
 
@@ -137,6 +138,12 @@ Al llamar a esta función, se renderizan todos los objetos registrados en la esc
 ```python
 fd3de.render_scene("EscenaPrincipal")
 ```
+Si a la función se le pasa como argumento `fd3de.ALL`, se renderizarán todas las escenas existentes.
+
+```python
+fd3de.render_scene(fd3de.ALL)
+```
+
 
 ---
 
@@ -187,6 +194,9 @@ fd3de.rotate("y", 35, cubo)
 
 Redibuja el objeto sobre sí mismo en color negro para borrarlo (es más eficiente que pintar toda la pantalla de negro).
 Como para ello utiliza directamente la función `render()`, requiere tener los mismos argumentos que esta para funcionar correctamente.
+En caso de que dos modelos estén superpuestos, cuando se borre uno de los dos objetos, se pintará de negro por encima del otro modelo,
+dejando su silueta marcada sobre los píxeles coincidentes. Este efecto solo se ve en el fotograma en el que se ejecuta el borrado
+así que será prácticamente imperceptible.
 
 `obj (dict)` → Objeto a borrar.  
 `scale (float)` → Número por el que se multiplicará la escala del objeto (por defecto equivale a 1).  
