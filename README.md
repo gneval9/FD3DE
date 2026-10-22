@@ -1,4 +1,4 @@
-## FD3DE (FrameDirect 3D Engine) - V0.12.0
+## FD3DE (FrameDirect 3D Engine) - V0.13.0
 
 **FD3DE** es un motor 3D programado en Python3 que utiliza **FrameDirect** para el renderizado en **framebuffer**.  
 La librería permite renderizar figuras 3D creadas por el usuario.
@@ -28,17 +28,19 @@ pip install fd3de
 ```python
 import fd3de
 
-cubo_load = fd3de.load("Modelos/cubo.fd3de")  # Cargar el modelo 3D
-cubo = fd3de.spawn(cubo_load)                 # Crear una instancia del modelo 3D
+cubo_load = fd3de.load("Modelos/cubo.fd3de")                      # Cargar el modelo 3D
+cubo = fd3de.spawn(cubo_load)                                     # Crear una instancia del modelo 3D
 
-fd3de.scene_add(cubo, fd3de.YELLOW)           # Añade la instancia a la escena
+fd3de.scene_new("EscenaPrincipal")                                # Crear la escena "EscenaPrincipal"
 
-fd3de.move("x", -170, cubo)                   # Mover el modelo -170 unidades en el eje X
+fd3de.scene_add("EscenePrincipal", cubo, fd3de.YELLOW)            # Añadir la instancia a la escena
+
+fd3de.move("x", -170, cubo)                                       # Mover el modelo -170 unidades en el eje X
 
 while True:
-    fd3de.rotate("y", 2, cubo)                # Rotar el modelo 2 grados en el eje Y
+    fd3de.rotate("y", 2, cubo)                                    # Rotar el modelo 2 grados en el eje Y
 
-    fd3de.render_scene()                      # Renderizar la escena
+    fd3de.render_scene("EscenaPrincipal")                         # Renderizar la escena
 
 ```
 
@@ -47,18 +49,18 @@ while True:
 ```python
 import fd3de
 
-cubo_load = fd3de.load("Modelos/cubo.fd3de")  # Cargar modelo 3D
-cubo = fd3de.spawn(cubo_load) 	              # Crear una instancia del modelo 3D
+cubo_load = fd3de.load("Modelos/cubo.fd3de")                      # Cargar modelo 3D
+cubo = fd3de.spawn(cubo_load) 	                                  # Crear una instancia del modelo 3D
 
-fd3de.move("x", -170, cubo)                   # Mover el modelo -170 unidades en el eje X
+fd3de.move("x", -170, cubo)                                       # Mover el modelo -170 unidades en el eje X
 
 while True:
-    fd3de.rotate("y", 2, cubo)                # Rotar el modelo 2 grados en el eje Y
+    fd3de.rotate("y", 2, cubo)                                    # Rotar el modelo 2 grados en el eje Y
 
-    fd3de.render(cubo, fd3de.YELLOW, 2, True) # Renderizar el modelo en amarillo
-    fd3de.update()                            # Actualizar el framebuffer
+    fd3de.render(cubo, fd3de.YELLOW, 2, True)                     # Renderizar el modelo en amarillo
+    fd3de.update()                                                # Actualizar el framebuffer
 
-    fd3de.clear_object(cubo, 2, True)         # Borrar el modelo (redibujando en negro por encima suyo)
+    fd3de.clear_object(cubo, 2, True)                             # Borrar el modelo (redibujando en negro por encima suyo)
 ```
 
 ---
@@ -86,39 +88,54 @@ Crea una instancia del modelo a partir de un modelo previamente cargado con `loa
 cubo = fd3de.spawn(cubo_load)  
 ```
 
----
-### scene_add(obj, color, scale=1, perspective_3d=True)
+### scene_new(scene)
 
-Añade la instancia del modelo dado a la escena. No se puede añadir el mismo objeto a la escena más de una vez.
+Crea una escena con el nombre asignado.
+
+`scene (str)` → Nombre de la escena.
+
+```python
+fd3de.scene_new("EscenaPrincipal")
+```
+
+
+
+---
+### scene_add(scene, obj, color, scale=1, perspective_3d=True)
+
+Añade la instancia del modelo dado a la escena indicada. No se puede añadir el mismo objeto a la escena más de una vez.
 En ese caso, se lanzará un `ValueError`.
 
+`scene (str)` → Nombre de la escena.
 `obj (dict)` → Objeto cargado con `spawn()`.  
 `color (int)` → Color en formato **ARGB** hexadecimal (ej.: 0x486F6C61).  
 `scale (float)` → Número por el que se multiplicará la escala del objeto (por defecto equivale a 1).  
 `perspective_3d (boolean)` → Indica si se aplicará efecto de perspectiva o no al modelo renderizado.
 
 ```python
-fd3de.scene_add(cubo, fd3de.RED, 3, True)
+fd3de.scene_add("EscenaPrincipal", cubo, fd3de.RED, 3, True)
 ```
 ---
-### scene_del(obj)
+### scene_del(scene, obj)
 
 Borra el objeto dado de la escena. La función comprueba si `obj` es la misma instancia que un objeto registrado en la escena. Si encuentra una coincidencia, elimina el objeto de la pantalla y lo retira de la escena.
 
-
+`scene (str)` → Nombre de la escena.
 `obj (dict)` → Objeto cargado con `spawn()`.
 
 ```python
-fd3de.scene_del(cubo)
+fd3de.scene_del("EscenaPrincipal", cubo)
 ```
 
 ---
-### render_scene()
+### render_scene(scene)
 
-Al llamar a esta función, se renderizan todos los objetos registrados en la escena. A continuación, se actualiza el framebuffer mediante `update()` y, finalmente, se borran las representaciones de los objetos dibujando sus aristas en negro con `clear_object()`. Esto simplifica el renderizado de escenas animadas, ya que no es necesario borrar manualmente cada objeto.
+Al llamar a esta función, se renderizan todos los objetos registrados en la escena dada. A continuación, se actualiza el framebuffer mediante `update()` y, finalmente, se borran las representaciones de los objetos dibujando sus aristas en negro con `clear_object()`. Esto simplifica el renderizado de escenas animadas, ya que no es necesario borrar manualmente cada objeto.
+
+`scene (str)` → Nombre de la escena.
 
 ```python
-fd3de.render_scene()
+fd3de.render_scene("EscenaPrincipal")
 ```
 
 ---
