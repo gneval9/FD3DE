@@ -1,6 +1,6 @@
 # Made and developed by gneval9 Software
-# 20-10-2026
-# V0.12.0
+# 22-10-2026
+# V0.13.0
 
 import framedirect as FD
 import math as m
@@ -27,7 +27,8 @@ atexit.register(close_all)
 screen_x = FD.screen_width
 screen_y = FD.screen_height
 
-scene = []
+
+scenes = {}
 
 
 center = (screen_x // 2, screen_y // 2)
@@ -133,32 +134,38 @@ def rotate(axis, angle, obj):
 
 
 
+def scene_new(scene):
+	if scene in scenes:	
+		raise ValueError(f"La escena ya existe.")
+	
+	scenes[scene] = []
 
-def scene_add(obj, color, scale=1, perspective_3d=True):
-	for n in scene:
+
+def scene_add(scene, obj, color, scale=1, perspective_3d=True):
+	for n in scenes[scene]:
 		if n[0] is obj:
 			raise ValueError(f"El objeto ya existe en la escena.")
 	
-	scene.append((obj, color, scale, perspective_3d))
+	scenes[scene].append((obj, color, scale, perspective_3d))
 
 
-def scene_del(obj):
-	for n in scene:
+def scene_del(scene, obj):
+	for n in scenes[scene]:
 		if n[0] is obj:
 			clear_object(n[0], n[2], n[3])
-			scene.remove(n)
+			scenes[scene].remove(n)
 			break
 
 
-def render_scene():
-	for n in range(len(scene)):
-		render(*scene[n])
+def render_scene(scene):
+	for n in range(len(scenes[scene])):
+		render(*scenes[scene][n])
 	
 	update()
 
 
-	for n in range(len(scene)):
-		clear_object(*scene[n][:1], *scene[n][2:])
+	for n in range(len(scenes[scene])):
+		clear_object(*scenes[scene][n][:1], *scenes[scene][n][2:])
 
 
 
@@ -224,8 +231,6 @@ def render(obj, color, scale=1, perspective_3d=True):
 				Px = 0
 				Py = 0
 				projected.append([Px, Py])
-
-
 
 
 
