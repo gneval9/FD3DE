@@ -1,6 +1,6 @@
 # Made and developed by gneval9 Software
 # 23-10-2026
-# V0.13.0 (Con los cambios de la 0.15.0)
+# V0.15.0
 
 import framedirect as FD
 import math as m
@@ -29,6 +29,7 @@ screen_y = FD.screen_height
 
 
 scenes = {}
+ALL = "ALL"
 
 
 center = (screen_x // 2, screen_y // 2)
@@ -59,8 +60,8 @@ def load(path):
 	archivo = pathlib.Path(path)
 
 	if archivo.suffix != ".fd3de":
-		print("Error: El archivo no es un .fd3de")
-		exit()
+		raise ValueError("Error: El archivo no es un .fd3de")
+		
 
 	with open(path, "r") as f:
 		file = ast.literal_eval(f.read())
@@ -92,12 +93,11 @@ def get_center(obj):
 		cy += v[1]
 		cz += v[2]
 
-	cx = cx / len(obj)
-	cy = cy / len(obj)
-	cz = cz / len(obj)
+	cx = cx / len(obj["original"])
+	cy = cy / len(obj["original"])
+	cz = cz / len(obj["original"])
 
 	return (cx, cy, cz)
-
 
 
 
@@ -112,8 +112,8 @@ def move(axis, dist, obj):
 		obj["position"][2] += dist
 
 	else:
-		print(f"Error: '{axis}' no es un argumento válido para la función 'move()'")
-		exit()
+		raise ValueError(f"Error: '{axis}' no es un argumento válido para la función 'move()'")
+		
 
 
 
@@ -129,15 +129,18 @@ def rotate(axis, angle, obj):
 		obj["rotation"][2] += angle
 
 	else:
-		print(f"Error: '{axis}' no es un argumento válido para la función 'rotate()'")
-		exit()
+		raise ValueError(f"Error: '{axis}' no es un argumento válido para la función 'rotate()'")
+		
 
 
 
 def scene_new(scene):
 	if scene in scenes:	
-		raise ValueError(f"La escena ya existe.")
+		raise ValueError("La escena ya existe.")
 	
+	elif scene == "ALL":
+		raise ValueError(f"El nombre '{ALL}' está reservado y no se puede utilizar como nombre para la escena.")
+
 	scenes[scene] = []
 
 def scene_rm(scene):
@@ -149,13 +152,10 @@ def scene_rm(scene):
 			break
 
 
-
-
-
 def scene_add(scene, obj, color, scale=1, perspective_3d=True):
 	for n in scenes[scene]:
 		if n[0] is obj:
-			raise ValueError(f"El objeto ya existe en la escena.")
+			raise ValueError("El objeto ya existe en la escena.")
 	
 	scenes[scene].append((obj, color, scale, perspective_3d))
 
@@ -168,17 +168,27 @@ def scene_del(scene, obj):
 			break
 
 
-
-
 def render_scene(scene):
-	for n in range(len(scenes[scene])):
-		render(*scenes[scene][n])
-	
-	update()
+	if scene == ALL:
+		for i in scenes:
+			for n in range(len(scenes[i])):
+				render(*scenes[i][n])
+		
+		update()
+
+		for i in scenes:
+			for n in range(len(scenes[i])):
+				clear_object(*scenes[i][n][:1], *scenes[i][n][2:])
+
+	else:
+		for n in range(len(scenes[scene])):
+			render(*scenes[scene][n])
+		
+		update()
 
 
-	for n in range(len(scenes[scene])):
-		clear_object(*scenes[scene][n][:1], *scenes[scene][n][2:])
+		for n in range(len(scenes[scene])):
+			clear_object(*scenes[scene][n][:1], *scenes[scene][n][2:])
 
 
 
