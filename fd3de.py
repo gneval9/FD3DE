@@ -1,6 +1,6 @@
 # Made and developed by gneval9 Software
 # 23-10-2026
-# V0.15.0
+# V0.16.0
 
 import framedirect as FD
 import math as m
@@ -8,6 +8,7 @@ import ast
 import atexit
 import os
 import pathlib
+import keyboard
 
 from . import utils
 
@@ -52,6 +53,9 @@ MAGENTA = FD.MAGENTA
 GRAY = FD.GRAY
 ORANGE = FD.ORANGE
 
+
+def key_input(key):
+	return keyboard.is_pressed(key)
 
 
 
