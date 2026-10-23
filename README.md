@@ -92,7 +92,7 @@ La instancia está formada por un diccionario con tres elementos: `["original"]`
 
 `["original"]` contiene la geometría original del modelo cargado. No hay necesidad ninguna de tocar esto.  
 `["position"]` contiene una lista con tres elementos, que representan la posición del objeto en los tres ejes.  
-`["rotation"]` contiene una lista con tres elementos, que representan la orientación del objeto en los tres ejes. Estos están en grados sexagecimales.
+`["rotation"]` contiene una lista con tres elementos, que representan la orientación del objeto en los tres ejes. Estos están en grados sexagesimales.
 
 ```python
 cubo["position"][0] = 200  #Asigna el valor 200 a la posición de cubo en el eje X
@@ -205,7 +205,7 @@ fd3de.rotate("y", 35, cubo)
 ### clear_object(obj, scale=1, perspective_3d=True)
 
 Redibuja el objeto sobre sí mismo en color negro para borrarlo (es más eficiente que pintar toda la pantalla de negro).
-Como para ello utiliza directamente la función `render()`, requiere tener los mismos argumentos que esta para funcionar correctamente.
+Internamente, utiliza la función `render()` con el color negro, por lo que acepta los mismos parámetros que esta, excepto `color`.
 En caso de que dos modelos estén superpuestos, cuando se borre uno de los dos objetos, se pintará de negro por encima del otro modelo,
 dejando su silueta marcada sobre los píxeles coincidentes. Este efecto solo se ve en el fotograma en el que se ejecuta el borrado
 así que será prácticamente imperceptible.
