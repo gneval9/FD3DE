@@ -1,6 +1,6 @@
 # Made and developed by gneval9 Software
-# 22-10-2026
-# V0.14.1
+# 23-10-2026
+# V0.13.0 (Con los cambios de la 0.15.0)
 
 import framedirect as FD
 import math as m
@@ -87,7 +87,7 @@ def get_center(obj):
 	cy = 0
 	cz = 0
 
-	for v in obj:
+	for v in obj["original"]:
 		cx += v[0]
 		cy += v[1]
 		cz += v[2]
@@ -140,6 +140,17 @@ def scene_new(scene):
 	
 	scenes[scene] = []
 
+def scene_rm(scene):
+	for n in scenes:
+		if n is scene:
+			for n in range(len(scenes[scene])):
+				clear_object(*scenes[scene][n][:1], *scenes[scene][n][2:])
+			del scenes[scene]
+			break
+
+
+
+
 
 def scene_add(scene, obj, color, scale=1, perspective_3d=True):
 	for n in scenes[scene]:
@@ -155,6 +166,8 @@ def scene_del(scene, obj):
 			clear_object(n[0], n[2], n[3])
 			scenes[scene].remove(n)
 			break
+
+
 
 
 def render_scene(scene):
