@@ -90,7 +90,7 @@ cubo = fd3de.spawn(cubo_load)
 La instancia está formada por un diccionario con tres elementos: `["original"]`, `["position"]` y `["rotation"]`.
 
 
-`["original"]` contiene la geometría original del modelo, que son lo que se han cargado. No hay necesidad ninguna de tocar esto.  
+`["original"]` contiene la geometría original del modelo cargado. No hay necesidad ninguna de tocar esto.  
 `["position"]` contiene una lista con tres elementos, que representan la posición del objeto en los tres ejes.  
 `["rotation"]` contiene una lista con tres elementos, que representan la orientación del objeto en los tres ejes. Estos están en grados sexagecimales.
 
