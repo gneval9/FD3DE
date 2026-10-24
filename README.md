@@ -1,4 +1,4 @@
-## FD3DE (FrameDirect 3D Engine) - V0.14.1
+## FD3DE (FrameDirect 3D Engine) - V0.17.0
 
 **FD3DE** es un motor 3D programado en Python3 que utiliza **FrameDirect** para el renderizado en **framebuffer**.  
 La librería permite renderizar figuras 3D creadas por el usuario.
@@ -111,7 +111,15 @@ tener varias escenas y renderizarlas por separado. El nombre "ALL" está reserva
 fd3de.scene_new("EscenaPrincipal")
 ```
 
+### scene_rm(scene)
 
+Borra la escena especificada.
+
+`scene (str)` → Nombre de la escena.
+
+```python
+fd3de.scene_rm("EscenaPrincipal")
+```
 
 ---
 ### scene_add(scene, obj, color, scale=1, perspective_3d=True)
@@ -138,6 +146,18 @@ Borra el objeto dado de la escena. La función comprueba si `obj` es la misma in
 
 ```python
 fd3de.scene_del("EscenaPrincipal", cubo)
+```
+---
+### scene_move_all(axis, dist, scene)
+
+Permite mover todos los objetos de una escena concreta. Internamente utiliza `move()`.
+
+`axis (str)` → Eje en el que se moverá (opciones válidas: "x", "y" y "z").  
+`dist (int)` → Número de unidades que el objeto se desplazará.  
+`scene (str)` → Escena a mover.  
+
+```python
+fd3de.scene_move_all("x", -170, "EscenaPrincipal")
 ```
 
 ---
@@ -173,7 +193,18 @@ fd3de.render(cubo, fd3de.RED, 2, True)
 ```
 
 ---
+### key_input(key)
 
+Permite comprobar si la tecla especificada está siendo pulsada o no, devolviendo un booleano. Internamente utiliza `keyboard.is_pressed`.
+
+`key (str)` → Tecla a comprobar
+
+```python
+fd3de.key_input("g")
+```
+
+
+---
 ### move(axis, dist, obj)
 
 Mueve el objeto un número determinado de unidades.
