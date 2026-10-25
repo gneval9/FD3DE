@@ -1,4 +1,4 @@
-## FD3DE (FrameDirect 3D Engine) - V0.17.0
+## FD3DE (FrameDirect 3D Engine) - V0.18.0
 
 **FD3DE** es un motor 3D programado en Python3 que utiliza **FrameDirect** para el renderizado en **framebuffer**.  
 La librería permite renderizar figuras 3D creadas por el usuario.
@@ -232,7 +232,11 @@ fd3de.rotate("y", 35, cubo)
 ```
 
 ---
+### orbit(axis, angle, obj)
+Pendiente de documentación.
 
+
+---
 ### clear_object(obj, scale=1, perspective_3d=True)
 
 Redibuja el objeto sobre sí mismo en color negro para borrarlo (es más eficiente que pintar toda la pantalla de negro).
