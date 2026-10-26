@@ -232,8 +232,18 @@ fd3de.rotate("y", 35, cubo)
 ```
 
 ---
-### orbit(axis, angle, obj)
-Pendiente de documentación.
+### orbit(axis, angle, obj, target)
+
+Esta función hace que `obj` orbite alrededor de `target` en el eje especificado.
+
+`axis (str)` → Eje en el que orbitará (opciones válidas: "x", "y" y "z").  
+`dist (int)` → Número de unidades que el objeto orbitará.  
+`obj (dict)` → Objeto que orbitará.
+`target (dict)` → Objeto a orbitar.
+
+```python
+fd3de.orbit("y", 40, nave, cubo)
+```
 
 
 ---
