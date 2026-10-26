@@ -1,36 +1,4 @@
 # Made and developed by gneval9 Software
-# 23-10-2026
-# V0.16.0
-
-import framedirect as FD
-import math as m
-import ast
-import atexit
-import os
-import pathlib
-import keyboard
-
-from . import utils
-
-FD.init()
-
-os.system("tput civis")
-os.system("stty -echo")
-
-def close_all():
-	FD.close()
-	os.system("tput cnorm")
-	os.system("stty echo")
-
-atexit.register(close_all)
-
-
-screen_x = FD.screen_width
-screen_y = FD.screen_height
-
-
-scenes = {}
-ALL = "ALL"# Made and developed by gneval9 Software
 # 25-10-2026
 # V0.18.0
 
