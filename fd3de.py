@@ -195,7 +195,7 @@ def scene_del(scene, obj):
 
 
 
-def move_all_scene(axis, dist, scene):
+def scene_move_all(axis, dist, scene):
 	for n in range(len(scenes[scene])):
 		move(axis, dist, scenes[scene][n][0])
 
