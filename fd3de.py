@@ -1,6 +1,6 @@
 # Made and developed by gneval9 Software
-# 26-10-2026
-# V0.18.2
+# 27-10-2026
+# V0.19.0
 
 import framedirect as FD
 import math as m
@@ -198,6 +198,12 @@ def scene_del(scene, obj):
 def scene_move_all(axis, dist, scene):
 	for n in range(len(scenes[scene])):
 		move(axis, dist, scenes[scene][n][0])
+
+
+
+def scene_orbit_all(axis, dist, scene, target):
+	for n in range(len(scenes[scene])):
+		orbit(axis, dist, scenes[scene][n][0], target)
 
 
 
