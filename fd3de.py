@@ -1,6 +1,6 @@
 # Made and developed by gneval9 Software
 # 27-10-2026
-# V0.19.0
+# V0.20.0
 
 import framedirect as FD
 import math as m
@@ -35,7 +35,7 @@ ALL = "ALL"
 
 center = (screen_x // 2, screen_y // 2)
 
-f = 330 * (screen_x / 1280)		# Distáncia focal
+f = 550 * (screen_x / 1280)		# Distáncia focal
 camera_offset = 300	# Distancia de la cámara
 
 perspective = "front" # front, up, side
