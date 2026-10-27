@@ -160,6 +160,24 @@ Permite mover todos los objetos de una escena concreta. Internamente utiliza `mo
 fd3de.scene_move_all("x", -170, "EscenaPrincipal")
 ```
 
+
+---
+
+### scene_orbit_all(axis, angle, scene, target)
+
+Esta función hace que `scene` orbite alrededor de `target` en el eje especificado.
+
+`axis (str)` → Eje en el que orbitará (opciones válidas: "x", "y" y "z").  
+`dist (int)` → Número de unidades que la escena orbitará.  
+`scene (str)` → Escena que orbitará.
+`target (dict)` → Objeto a orbitar.
+
+```python
+fd3de.scene_orbit_all("y", 40, "EscenaPrincipal", cubo)
+```
+
+
+
 ---
 ### render_scene(scene)
 
