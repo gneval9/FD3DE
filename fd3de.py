@@ -178,7 +178,7 @@ def scene_rm(scene):
 			break
 
 
-def scene_add(scene, obj, color, scale=1, perspective_3d=True):
+def scene_add(scene, obj, color=WHITE, scale=1, perspective_3d=True):
 	for n in scenes[scene]:
 		if n[0] is obj:
 			raise ValueError("El objeto ya existe en la escena.")
@@ -234,9 +234,7 @@ def render_scene(scene):
 
 
 
-
-
-def render(obj, color, scale=1, perspective_3d=True):
+def render(obj, color=WHITE, scale=1, perspective_3d=True):
 
 	projected = []
 
