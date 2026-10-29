@@ -223,7 +223,7 @@ fd3de.render(cubo, fd3de.RED, 2, True)
 ---
 ### key_input(key)
 
-Permite comprobar si la tecla especificada está siendo pulsada o no, devolviendo un booleano. Internamente utiliza `keyboard.is_pressed`.
+Permite comprobar si la tecla especificada está siendo pulsada o no, devolviendo un booleano. Internamente utiliza `keyboard.is_pressed()`.
 
 `key (str)` → Tecla a comprobar
 
