@@ -1,6 +1,6 @@
 # Made and developed by gneval9 Software
 # 29-10-2026
-# V0.21.0
+# V0.21.1
 
 import framedirect as FD
 import math as m
@@ -211,8 +211,8 @@ def scene_contains(scene, obj):
     for n in scenes[scene]:
         if n[0] is obj:
             return True
-        else:
-            return False
+        
+    return False
 
 
 
