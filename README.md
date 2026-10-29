@@ -1,4 +1,4 @@
-## FD3DE (FrameDirect 3D Engine) - V0.20.0
+## FD3DE (FrameDirect 3D Engine) - V0.21.0
 
 **FD3DE** es un motor 3D programado en Python3 que utiliza **FrameDirect** para el renderizado en **framebuffer**.  
 La librería permite renderizar figuras 3D creadas por el usuario.
@@ -175,7 +175,17 @@ Esta función hace que `scene` orbite alrededor de `target` en el eje especifica
 ```python
 fd3de.scene_orbit_all("y", 40, "EscenaPrincipal", cubo)
 ```
+---
+### scene_contains(scene, obj)
+Comprueba si el objeto dado existe en la escena en cuestión. Devuelve `True` o `False` en
+función de si existe o no.
 
+`scene (str)` → Nombre de la escena.
+`obj (dict)` → Objeto cargado con `spawn()`.
+
+```python
+fd3de.scene_contains("EscenaPrincipal", cubo)
+```
 
 
 ---
