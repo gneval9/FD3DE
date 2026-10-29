@@ -119,8 +119,8 @@ while True:
 		flame["position"][1] = top -40
 
 		if nave_speed_y < -20 or nave_speed_x > 7 or nave_speed_x < -7:
-			print("EXPLODED")
-			exit()
+			raise SystemError("You went caput")
+
 
 		nave_speed_x = 0
 		nave_speed_y = 0
